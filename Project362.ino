@@ -21,9 +21,7 @@ unsigned long remainingSeconds = 0;
 unsigned long previousMillis = 0;
 const unsigned long interval = 1000;
 
-// ----------------------
 // Receive from master
-// ----------------------
 void receiveEvent(int numBytes) {
   if (numBytes >= 1) {
     durationHours = Wire.read();      // Master sends 1 byte (0–24)
@@ -31,9 +29,8 @@ void receiveEvent(int numBytes) {
   }
 }
 
-// ----------------------
+
 // Master requests LED state
-// ----------------------
 void requestEvent() {
   if (digitalRead(LED_PIN) == HIGH)
     Wire.write(1);
@@ -61,8 +58,6 @@ void loop() {
     previousMillis = now;
 
     int lightLevel = analogRead(LIGHT_SENSOR_PIN);
-
-  
 
     // Automatic lighting logic
     if (remainingSeconds > 0) {
